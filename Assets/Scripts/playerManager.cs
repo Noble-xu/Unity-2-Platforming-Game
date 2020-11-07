@@ -19,6 +19,11 @@ public class playerManager : MonoBehaviour
     public GameObject winMenu;
     public GameObject loseMenu;
 
+    private List<Collectable> inventory = new List<Collectable>();
+    public Text inventoryText;
+    public Text descriptionText;
+    private int currentIndex;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,6 +51,21 @@ public class playerManager : MonoBehaviour
         if (health <= 0)
         {
             LoseGame();
+        }
+
+        if (inventory.Count == 0)
+        {
+          inventoryText.text = "Current Selection: None";
+        }
+        else
+        {
+          inventoryText.text = "Current Selection: " + inventory[currentIndex].collectableName + " " + currentIndex.ToString();
+          descriptionText.text = "Press [E] to " + inventory[currentIndex].description;
+        }
+
+        if(inventory.Count > 0)
+        {
+          if(Input.GetKeyDown(KeyCode.E))
         }
     }
 
